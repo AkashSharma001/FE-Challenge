@@ -2,7 +2,7 @@ import { getModels } from "../../api/getModels";
 import { useCallback, useEffect, useState } from "react";
 import CircularProgress from "@mui/joy/CircularProgress";
 import { InventoryCard } from "../../components/InventoryCard";
-import { Button, ButtonGroup, Container, Input } from "@mui/joy";
+import { Button, ButtonGroup, Container, Input, } from "@mui/joy";
 import { ModelDataTypes, ModelsType } from "../../types/types";
 
 const InventoryPage = () => {
@@ -126,7 +126,9 @@ const InventoryPage = () => {
                 "&:hover": {
                   backgroundColor: sortOrder === "asc" ? "#8E98FF" : "#d4d8fc",
                   color: "#FFF",
+                  fontSize:"24px"
                 },
+                textWrap:"nowrap"
               }}
             >
               A-Z
@@ -143,6 +145,7 @@ const InventoryPage = () => {
                   backgroundColor: sortOrder === "desc" ? "#8E98FF" : "#d4d8fc",
                   color: "#FFF",
                 },
+                textWrap:"nowrap"
               }}
             >
               Z-A
