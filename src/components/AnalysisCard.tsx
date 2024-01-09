@@ -1,10 +1,9 @@
 import { Card, CardContent } from "@mui/joy";
 import { ResponsiveBar } from "@nivo/bar";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { AnalysisArray, AnalysisCardProps, BarData } from "../types/types";
 
 export const AnalysisCard: React.FC<AnalysisCardProps> = ({ analysisData }) => {
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
 
   const getFeatureList = (data: AnalysisArray) => {
     const featureListData = data.find(
@@ -30,18 +29,6 @@ export const AnalysisCard: React.FC<AnalysisCardProps> = ({ analysisData }) => {
 
   const featureList: string[] = getFeatureList(analysisData);
 
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
   const formatToPercentage = (value: number) => {
     return `${(value !== null ? value * 100 : 0).toFixed(2)}%`;
   };
@@ -51,9 +38,7 @@ export const AnalysisCard: React.FC<AnalysisCardProps> = ({ analysisData }) => {
 
       <CardContent sx={{ width: "100%" }}>
       <div
-            className={`h-[75vh]  ${
-              windowWidth < 768 ? "w-[500px]" : ""
-            } overflow-y-hidden `}
+            className={`h-[75vh]  min-w-[500px] overflow-y-hidden `}
           >
           <ResponsiveBar
             data={analysisValue}
@@ -61,9 +46,9 @@ export const AnalysisCard: React.FC<AnalysisCardProps> = ({ analysisData }) => {
             indexBy="origin"
             margin={{
               top: 50,
-              right: windowWidth < 768 ? 140 : 160,
+              right: 150,
               bottom: 50,
-              left: windowWidth < 768 ? 50 : 80,
+              left: 65,
             }}
             padding={0.3}
             layout="horizontal"
